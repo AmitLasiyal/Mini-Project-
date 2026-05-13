@@ -1,0 +1,1439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SkillHire Pro – Connect with Experts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+  --g: #16a34a;
+  --g2: #4ade80;
+  --dark: #0f0f0f;
+  --card: #ffffff;
+  --bg: #f8fafc;
+  --muted: #64748b;
+  --border: #e2e8f0;
+  --radius: 2rem;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--dark);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+h1,h2,h3,h4,h5 { font-family: 'Syne', sans-serif; }
+
+/* ---- NAVBAR ---- */
+nav {
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  position: sticky; top: 0; z-index: 100;
+}
+.nav-inner {
+  max-width: 1280px; margin: auto; padding: 0 1.5rem;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 72px;
+}
+.logo { display: flex; align-items: center; gap: .75rem; text-decoration: none; cursor: pointer; }
+.logo-icon {
+  background: var(--g); color: white;
+  width: 44px; height: 44px; border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem; transition: transform .3s;
+}
+.logo:hover .logo-icon { transform: rotate(12deg); }
+.logo-text { line-height: 1; }
+.logo-text span:first-child { display: block; font-family: 'Syne',sans-serif; font-weight: 800; font-size: 1.1rem; color: var(--dark); }
+.logo-text span:last-child { display: block; font-size: .6rem; font-weight: 700; color: var(--g); letter-spacing: .15em; text-transform: uppercase; }
+.nav-actions { display: flex; align-items: center; gap: 1rem; }
+.nav-user { display: flex; align-items: center; gap: .75rem; }
+.nav-user-info { text-align: right; }
+.nav-user-info .uname { font-weight: 700; font-size: .9rem; }
+.nav-user-info .urole {
+  font-size: .6rem; font-weight: 700; text-transform: uppercase; letter-spacing: .12em;
+  background: #ecfdf5; color: var(--g); border: 1px solid #bbf7d0;
+  padding: 1px 6px; border-radius: 6px; display: inline-block;
+}
+.btn { cursor: pointer; border: none; font-family: 'Syne', sans-serif; font-weight: 700; transition: all .2s; }
+.btn-ghost { background: #f1f5f9; color: var(--muted); padding: .6rem .9rem; border-radius: 12px; font-size: .85rem; }
+.btn-ghost:hover { background: #fee2e2; color: #dc2626; }
+.btn-primary { background: var(--g); color: white; padding: .65rem 1.6rem; border-radius: 14px; font-size: .88rem; box-shadow: 0 4px 16px #16a34a30; }
+.btn-primary:hover { background: #15803d; transform: translateY(-1px); }
+.btn-outline { background: transparent; border: 2px solid var(--dark); color: var(--dark); padding: .65rem 1.5rem; border-radius: 14px; font-size: .88rem; }
+.btn-outline:hover { background: var(--dark); color: white; }
+.btn-dark { background: var(--dark); color: white; padding: .65rem 1.6rem; border-radius: 14px; font-size: .88rem; }
+.btn-dark:hover { background: var(--g); }
+
+/* ---- PAGES ---- */
+.page { display: none; flex-direction: column; }
+.page.active { display: flex; }
+main { flex: 1; display: flex; flex-direction: column; }
+
+/* ---- LANDING ---- */
+#page-landing { background: white; }
+.hero {
+  max-width: 1280px;
+  margin: auto;
+  padding: 7rem 1.5rem 5rem;
+  text-align: center;
+  position: relative;
+}
+.hero::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background: radial-gradient(circle at top right, rgba(22,163,74,.15), transparent 40%);
+  pointer-events:none;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: .5rem;
+  background: #ecfdf5; border: 1px solid #bbf7d0; color: var(--g);
+  padding: .45rem 1.1rem; border-radius: 999px; font-size: .7rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .12em; margin-bottom: 2rem;
+}
+.hero h1 {
+  font-size: clamp(3rem, 8vw, 7rem); font-weight: 800; line-height: .9;
+  letter-spacing: -.04em; margin-bottom: 1.5rem; color: var(--dark);
+}
+.hero h1 span {
+  background: linear-gradient(135deg, var(--g), #14b8a6);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.hero p { font-size: 1.2rem; color: var(--muted); max-width: 560px; margin: 0 auto 2.5rem; line-height: 1.7; }
+.hero-ctas { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 5rem; }
+.btn-hero-primary {
+  background: var(--g); color: white; padding: 1.1rem 2.5rem;
+  border-radius: 999px; font-size: 1.05rem; font-weight: 800;
+  box-shadow: 0 8px 32px #16a34a30; cursor: pointer; border: none;
+  display: inline-flex; align-items: center; gap: .75rem; transition: all .25s;
+  font-family: 'Syne', sans-serif;
+}
+.btn-hero-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 40px #16a34a40; }
+.btn-hero-secondary {
+  background: var(--dark); color: white; padding: 1.1rem 2.5rem;
+  border-radius: 999px; font-size: 1.05rem; font-weight: 800;
+  cursor: pointer; border: none; font-family: 'Syne', sans-serif;
+  transition: all .25s;
+}
+.btn-hero-secondary:hover { background: #1e293b; }
+.features-grid {
+  max-width: 1280px; margin: 0 auto 5rem; padding: 0 1.5rem;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;
+}
+.feature-card {
+  background: #f8fafc; border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 2.5rem; transition: transform .25s;
+}
+.feature-card:hover { transform: translateY(-4px); }
+.feature-icon {
+  width: 56px; height: 56px; background: white; border-radius: 16px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 1.25rem; border: 1px solid var(--border); box-shadow: 0 2px 8px #0001;
+  font-size: 1.4rem; color: var(--g);
+}
+.feature-card h3 { font-size: 1.3rem; font-weight: 800; margin-bottom: .5rem; }
+.feature-card p { color: var(--muted); line-height: 1.6; font-size: .95rem; }
+
+/* ---- FORMS (Login / Register / Forgot) ---- */
+.form-page { max-width: 520px; margin: 4rem auto; padding: 0 1rem; width: 100%; }
+.form-wide { max-width: 900px; }
+.form-card {
+  background: white; border: 1px solid var(--border);
+  border-radius: 2.5rem; padding: 3rem; box-shadow: 0 16px 64px #0000000a;
+}
+.form-header { text-align: center; margin-bottom: 2.5rem; }
+.form-header h2 { font-size: 2.5rem; font-weight: 800; letter-spacing: -.03em; }
+.form-header p { color: var(--muted); font-size: .75rem; font-weight: 600; text-transform: uppercase; letter-spacing: .18em; margin-top: .3rem; }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+@media(max-width:680px) { .form-grid { grid-template-columns: 1fr; } }
+.form-group { display: flex; flex-direction: column; gap: .4rem; }
+.form-group.full { grid-column: 1/-1; }
+label { font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .14em; color: var(--muted); }
+input, textarea, select {
+  background: #f8fafc; border: 1.5px solid var(--border); border-radius: 14px;
+  padding: .85rem 1.1rem; font-size: .95rem; font-weight: 500;
+  outline: none; transition: border-color .2s, background .2s;
+  font-family: 'DM Sans', sans-serif; color: var(--dark); width: 100%;
+}
+input:focus, textarea:focus { border-color: var(--g); background: white; }
+input:disabled { opacity: .5; cursor: not-allowed; }
+textarea { resize: vertical; min-height: 90px; }
+.error-msg { background: #fef2f2; border: 1px solid #fecaca; color: #dc2626; padding: .75rem 1rem; border-radius: 12px; font-size: .8rem; font-weight: 600; }
+.success-msg { background: #ecfdf5; border: 1px solid #bbf7d0; color: var(--g); padding: .75rem 1rem; border-radius: 12px; font-size: .8rem; font-weight: 600; }
+.btn-submit {
+  background: var(--g); color: white; padding: 1.1rem; border-radius: 1.5rem;
+  font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1rem;
+  border: none; cursor: pointer; width: 100%; transition: all .2s;
+  box-shadow: 0 4px 20px #16a34a25;
+}
+.btn-submit:hover:not(:disabled) { background: #15803d; transform: translateY(-1px); }
+.btn-submit:disabled { background: #e2e8f0; color: #94a3b8; cursor: not-allowed; box-shadow: none; }
+.link-sm { font-size: .78rem; font-weight: 700; color: var(--muted); text-decoration: none; text-transform: uppercase; letter-spacing: .12em; }
+.link-sm:hover { color: var(--g); }
+.text-center { text-align: center; }
+
+/* Username status */
+.username-wrap { position: relative; }
+.username-status {
+  position: absolute; right: 1rem; top: 50%; transform: translateY(-50%);
+  font-size: .85rem;
+}
+.username-status.ok { color: var(--g); }
+.username-status.err { color: #dc2626; }
+.suggestions { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .5rem; }
+.suggestion-tag {
+  background: #f1f5f9; border: 1px solid var(--border); color: var(--dark);
+  padding: .2rem .65rem; border-radius: 8px; font-size: .75rem; font-weight: 600;
+  cursor: pointer; transition: all .15s;
+}
+.suggestion-tag:hover { background: #ecfdf5; border-color: var(--g); color: var(--g); }
+
+/* Aadhar */
+.aadhar-row { display: flex; gap: .5rem; }
+.aadhar-row input { flex: 1; }
+.aadhar-verified-badge { display: flex; align-items: center; gap: .4rem; background: #ecfdf5; color: var(--g); border: 1px solid #bbf7d0; padding: .5rem .9rem; border-radius: 12px; font-size: .75rem; font-weight: 700; white-space: nowrap; }
+
+/* Skill tags */
+.skill-tags { display: flex; flex-wrap: wrap; gap: .5rem; }
+.skill-tag {
+  padding: .6rem 1.2rem; border-radius: 12px; border: 2px solid var(--border);
+  font-family: 'Syne', sans-serif; font-weight: 700; font-size: .75rem;
+  text-transform: uppercase; letter-spacing: .08em; cursor: pointer; transition: all .2s;
+  background: white; color: var(--muted);
+}
+.skill-tag.selected { background: var(--g); border-color: var(--g); color: white; box-shadow: 0 4px 16px #16a34a30; }
+
+/* ---- SERVICE MENU ---- */
+#page-service { background: white; }
+.service-inner { max-width: 1280px; margin: auto; padding: 3rem 1.5rem; }
+
+/* AI Section */
+.ai-section {
+  background: var(--dark); border-radius: 2.5rem; padding: 3rem;
+  margin-bottom: 3rem; color: white; display: grid;
+  grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: center;
+}
+@media(max-width:768px) { .ai-section { grid-template-columns: 1fr; } }
+.ai-badge {
+  display: inline-flex; align-items: center; gap: .4rem;
+  background: rgba(74,222,128,.15); color: var(--g2); border: 1px solid rgba(74,222,128,.3);
+  padding: .3rem .8rem; border-radius: 8px; font-size: .65rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .12em; margin-bottom: 1rem;
+}
+.ai-section h2 { font-size: 2.2rem; font-weight: 800; margin-bottom: 1.5rem; line-height: 1.1; }
+.ai-section h2 span { color: var(--g2); text-decoration: underline; text-underline-offset: 6px; text-decoration-color: #166534; }
+.ai-textarea {
+  background: #1e293b; border: 2px solid #334155; color: white;
+  border-radius: 1.5rem; padding: 1.25rem; min-height: 180px; resize: none;
+  width: 100%; font-family: 'DM Sans', sans-serif; font-size: 1rem;
+}
+.ai-textarea::placeholder { color: #475569; }
+.ai-textarea:focus { border-color: var(--g); outline: none; }
+.ai-consult-btn {
+  background: var(--g); color: white; border: none; padding: .75rem 1.75rem;
+  border-radius: 12px; font-family: 'Syne', sans-serif; font-weight: 800;
+  font-size: .9rem; cursor: pointer; margin-top: .75rem; transition: all .2s;
+  display: inline-flex; align-items: center; gap: .5rem;
+}
+.ai-consult-btn:hover:not(:disabled) { background: #15803d; }
+.ai-consult-btn:disabled { opacity: .5; cursor: not-allowed; }
+.ai-response-panel {
+  background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08);
+  border-radius: 2rem; padding: 2rem; min-height: 240px;
+  display: flex; flex-direction: column; justify-content: center;
+}
+.ai-empty { text-align: center; }
+.ai-empty i { font-size: 2.5rem; color: #1e293b; margin-bottom: 1rem; }
+.ai-empty p { color: #334155; font-weight: 600; font-size: .8rem; text-transform: uppercase; letter-spacing: .12em; }
+.ai-result-icon { width: 44px; height: 44px; background: var(--g); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; }
+.ai-result-text { font-size: 1.05rem; line-height: 1.7; color: #e2e8f0; }
+
+/* Filter bar */
+.filter-bar { display: flex; flex-wrap: wrap; gap: 1rem; align-items: flex-end; justify-content: space-between; margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
+.filter-left h3 { font-size: 2.5rem; font-weight: 800; letter-spacing: -.03em; margin-bottom: .75rem; }
+.filter-left span { font-size: .65rem; font-weight: 700; text-transform: uppercase; letter-spacing: .15em; color: var(--muted); }
+.filter-skills { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .75rem; }
+.filter-skill-btn {
+  padding: .5rem 1.1rem; border-radius: 12px; border: 2px solid var(--border);
+  font-family: 'Syne', sans-serif; font-weight: 700; font-size: .72rem;
+  text-transform: uppercase; letter-spacing: .08em; cursor: pointer; background: white;
+  color: var(--muted); transition: all .2s;
+}
+.filter-skill-btn.active { background: var(--g); border-color: var(--g); color: white; }
+.filter-right { position: relative; }
+.filter-right i { position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: #cbd5e1; }
+.filter-right input { padding-left: 2.5rem; min-width: 220px; }
+
+/* Workers grid */
+.workers-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; margin-bottom: 4rem; }
+.worker-card {
+  background: white; border: 1px solid var(--border); border-radius: 2.5rem;
+  padding: 2rem; transition: all .25s; position: relative; overflow: hidden; cursor: default; background:linear-gradient(180deg,#ffffff,#f8fafc);
+}
+.worker-card:hover { transform: translateY(-4px); box-shadow: 0 20px 60px #0000000d; border-color: #bbf7d0; }
+.worker-card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.25rem; }
+.worker-avatar {
+  width: 64px; height: 64px; background: #f1f5f9; border-radius: 18px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.8rem; color: #cbd5e1;
+  transition: all .3s;
+}
+.worker-card:hover .worker-avatar { background: var(--g); color: white; }
+.worker-rating { text-align: right; }
+.worker-rating .stars { color: var(--g); font-weight: 800; font-size: 1rem; }
+.worker-rating .stars i { font-size: .75rem; margin-right: .2rem; }
+.worker-rating .verified { font-size: .58rem; color: #94a3b8; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; }
+.worker-name { font-size: 1.4rem; font-weight: 800; margin-bottom: .25rem; }
+.worker-addr { font-size: .85rem; color: var(--muted); display: flex; align-items: center; gap: .35rem; margin-bottom: 1rem; }
+.worker-skills { display: flex; flex-wrap: wrap; gap: .35rem; margin-bottom: 1.25rem; }
+.worker-skill-badge { background: #f8fafc; border: 1px solid var(--border); color: var(--muted); padding: .25rem .7rem; border-radius: 8px; font-size: .65rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; }
+.worker-actions { display: flex; gap: .5rem; }
+.btn-hire { flex: 1; background: var(--dark); color: white; border: none; padding: .75rem; border-radius: 14px; font-family: 'Syne', sans-serif; font-weight: 800; font-size: .85rem; cursor: pointer; transition: all .2s; }
+.btn-hire:hover { background: var(--g); }.no-workers { text-align: center; padding: 5rem 2rem; background: #f8fafc; border-radius: 2rem; border: 2px dashed var(--border); }
+.no-workers i { font-size: 3rem; color: var(--border); margin-bottom: 1rem; }
+.no-workers h4 { font-weight: 800; color: #94a3b8; font-size: 1rem; text-transform: uppercase; letter-spacing: .12em; }
+.no-workers p { color: #94a3b8; font-size: .85rem; margin-top: .4rem; }
+
+/* toast */
+.toast {
+  position: fixed; top: 5.5rem; left: 50%; transform: translateX(-50%) translateY(-20px);
+  background: var(--dark); color: white; padding: .9rem 1.75rem; border-radius: 999px;
+  font-family: 'Syne', sans-serif; font-weight: 700; font-size: .85rem;
+  box-shadow: 0 8px 32px #0000003a; z-index: 999; border: 1.5px solid var(--g);
+  display: flex; align-items: center; gap: .6rem; opacity: 0; transition: all .3s;
+  pointer-events: none;
+}
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* Chat modal */
+.chat-modal {
+  position: fixed; bottom: 2rem; right: 2rem; width: 360px;
+  background: white; border-radius: 2rem; box-shadow: 0 24px 80px #00000020;
+  border: 1px solid var(--border); overflow: hidden; z-index: 200;
+  display: none; flex-direction: column;
+}
+.chat-modal.open { display: flex; }
+.chat-header { background: var(--dark); padding: 1rem 1.25rem; display: flex; align-items: center; justify-content: space-between; }
+.chat-header-info { display: flex; align-items: center; gap: .75rem; }
+.chat-avatar { width: 38px; height: 38px; background: var(--g); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-family: 'Syne', sans-serif; font-weight: 800; color: white; }
+.chat-name { font-family: 'Syne', sans-serif; font-weight: 700; color: white; font-size: .9rem; }
+.chat-online { font-size: .6rem; color: var(--g2); font-weight: 700; text-transform: uppercase; display: flex; align-items: center; gap: .3rem; }
+.chat-online span { width: 6px; height: 6px; background: var(--g2); border-radius: 999px; display: inline-block; animation: pulse 1.5s infinite; }
+.btn-close-chat { background: none; border: none; color: #64748b; font-size: 1rem; cursor: pointer; transition: color .2s; }
+.btn-close-chat:hover { color: white; }
+.chat-body { flex: 1; padding: 1.25rem; height: 240px; overflow-y: auto; display: flex; flex-direction: column; gap: .75rem; background: #f8fafc; }
+.chat-bubble { padding: .75rem 1rem; border-radius: 14px; max-width: 80%; font-size: .85rem; line-height: 1.5; }
+.chat-bubble.received { background: white; border: 1px solid var(--border); border-radius: 14px 14px 14px 0; align-self: flex-start; color: var(--dark); }
+.chat-bubble.sent { background: var(--g); color: white; border-radius: 14px 14px 0 14px; align-self: flex-end; }
+.chat-input { padding: .75rem; border-top: 1px solid var(--border); display: flex; gap: .5rem; }
+.chat-input input { flex: 1; background: #f8fafc; border: 1px solid var(--border); border-radius: 12px; padding: .6rem 1rem; font-size: .85rem; outline: none; }
+.chat-input input:focus { border-color: var(--g); }
+.btn-send { width: 42px; height: 42px; background: var(--g); border: none; border-radius: 12px; color: white; cursor: pointer; transition: background .2s; }
+.btn-send:hover { background: #15803d; }
+
+/* ---- WORKER DASHBOARD ---- */
+#page-worker { background: var(--bg); }
+.worker-dash-inner { max-width: 1100px; margin: auto; padding: 3rem 1.5rem; }
+.dash-card { background: white; border: 1px solid var(--border); border-radius: 2.5rem; overflow: hidden; box-shadow: 0 8px 40px #0000000a; }
+.dash-header { background: var(--dark); padding: 2.5rem 3rem; color: white; display: flex; flex-wrap: wrap; gap: 1.5rem; align-items: center; justify-content: space-between; }
+.dash-avatar { width: 90px; height: 90px; background: var(--g); border-radius: 1.5rem; display: flex; align-items: center; justify-content: center; font-family: 'Syne', sans-serif; font-weight: 800; font-size: 2.5rem; color: white; box-shadow: 0 8px 32px #16a34a40; }
+.dash-name { font-size: 2.5rem; font-weight: 800; letter-spacing: -.03em; margin-bottom: .2rem; }
+.dash-badge { background: rgba(74,222,128,.15); color: var(--g2); border: 1px solid rgba(74,222,128,.3); padding: .25rem .75rem; border-radius: 8px; font-size: .65rem; font-weight: 700; text-transform: uppercase; letter-spacing: .12em; display: inline-block; margin-bottom: .6rem; }
+.dash-sub { color: #94a3b8; font-size: 1rem; display: flex; align-items: center; gap: .5rem; }
+.avail-btn { padding: 1rem 2.5rem; border-radius: 999px; border: none; font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1rem; cursor: pointer; transition: all .3s; }
+.avail-btn.online { background: var(--g); color: white; box-shadow: 0 4px 24px #16a34a40; }
+.avail-btn.offline { background: #1e293b; color: #475569; }
+.dash-tabs { display: flex; gap: 3rem; padding: 0 3rem; background: #fafafa; border-bottom: 1px solid var(--border); }
+.dash-tab { padding: 1.25rem 0; font-family: 'Syne', sans-serif; font-weight: 800; font-size: .75rem; text-transform: uppercase; letter-spacing: .18em; color: #94a3b8; background: none; border: none; cursor: pointer; position: relative; transition: color .2s; display: flex; align-items: center; gap: .4rem; }
+.dash-tab.active { color: var(--dark); }
+.dash-tab.active::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: var(--g); border-radius: 3px 3px 0 0; }
+.tab-badge { background: var(--g); color: white; border-radius: 999px; padding: .1rem .5rem; font-size: .65rem; }
+.dash-body { padding: 2.5rem 3rem; }
+.job-card { background: #f8fafc; border: 1px solid var(--border); border-radius: 2rem; padding: 2rem; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1.5rem; margin-bottom: 1.25rem; transition: border-color .2s; }
+.job-card:hover { border-color: #bbf7d0; }
+.job-info { flex: 1; min-width: 200px; }
+.job-meta { display: flex; gap: .5rem; align-items: center; margin-bottom: .75rem; flex-wrap: wrap; }
+.job-skill-badge { background: white; border: 1px solid var(--border); color: var(--muted); padding: .25rem .7rem; border-radius: 8px; font-size: .65rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; }
+.status-badge { padding: .25rem .7rem; border-radius: 8px; font-size: .65rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; }
+.status-Pending { background: #fef3c7; color: #d97706; }
+.status-Accepted { background: #ecfdf5; color: var(--g); }
+.status-Completed { background: #f1f5f9; color: #64748b; }
+.status-Cancelled { background: #fef2f2; color: #dc2626; }
+.job-id { font-size: 1.5rem; font-weight: 800; margin-bottom: .5rem; }
+.job-desc { color: var(--muted); font-size: .95rem; margin-bottom: .5rem; font-style: italic; }
+.job-time { font-size: .65rem; font-weight: 700; text-transform: uppercase; letter-spacing: .14em; color: #cbd5e1; display: flex; align-items: center; gap: .4rem; }
+.job-actions { display: flex; align-items: flex-end; gap: .6rem; flex-wrap: wrap; }
+.btn-approve { background: var(--g); color: white; border: none; padding: .75rem 1.75rem; border-radius: 14px; font-family: 'Syne', sans-serif; font-weight: 800; font-size: .85rem; cursor: pointer; transition: all .2s; box-shadow: 0 4px 16px #16a34a25; }
+.btn-approve:hover { background: #15803d; }
+.btn-decline { background: white; border: 1.5px solid var(--border); color: var(--muted); padding: .75rem 1.75rem; border-radius: 14px; font-family: 'Syne', sans-serif; font-weight: 800; font-size: .85rem; cursor: pointer; transition: all .2s; }
+.btn-decline:hover { background: #fef2f2; color: #dc2626; border-color: #fecaca; }
+.btn-complete { background: var(--dark); color: white; border: none; padding: .75rem 1.75rem; border-radius: 14px; font-family: 'Syne', sans-serif; font-weight: 800; font-size: .85rem; cursor: pointer; transition: all .2s; }
+.btn-complete:hover { background: var(--g); }
+.empty-jobs { text-align: center; padding: 4rem 2rem; background: #f8fafc; border-radius: 2rem; border: 2px dashed var(--border); }
+.empty-jobs i { font-size: 2.5rem; color: var(--border); margin-bottom: 1rem; }
+.empty-jobs h4 { font-weight: 800; color: #94a3b8; text-transform: uppercase; letter-spacing: .12em; font-size: .9rem; }
+.empty-jobs p { color: #94a3b8; font-size: .85rem; margin-top: .35rem; }
+
+/* Profile Tab */
+.profile-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+@media(max-width:680px) { .profile-grid { grid-template-columns: 1fr; } }
+.section-label { font-size: .65rem; font-weight: 700; text-transform: uppercase; letter-spacing: .18em; color: #94a3b8; margin-bottom: 1rem; }
+.profile-bio { background: #f8fafc; border: 2px solid transparent; border-radius: 1.5rem; padding: 1.25rem; min-height: 140px; resize: none; width: 100%; font-family: 'DM Sans', sans-serif; font-size: .95rem; line-height: 1.6; color: var(--dark); transition: border-color .2s; }
+.profile-bio:focus { border-color: var(--g); outline: none; background: white; }
+.identity-panel { background: #f8fafc; border: 1px solid var(--border); border-radius: 2rem; padding: 2rem; }
+.identity-row { margin-bottom: 1.25rem; }
+.identity-row:last-child { margin-bottom: 0; }
+.identity-key { font-size: .62rem; font-weight: 700; text-transform: uppercase; letter-spacing: .14em; color: var(--muted); margin-bottom: .2rem; }
+.identity-val { font-family: 'Syne', sans-serif; font-weight: 700; font-size: .95rem; }
+.identity-val.green { color: var(--g); }
+
+/* ---- FOOTER ---- */
+footer { background: #f8fafc; border-top: 1px solid var(--border); margin-top: auto; }
+.footer-inner { max-width: 1280px; margin: auto; padding: 4rem 1.5rem; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem; }
+@media(max-width:640px) { .footer-inner { grid-template-columns: 1fr; gap: 2rem; } }
+.footer-brand p { color: var(--muted); font-size: .9rem; line-height: 1.7; max-width: 380px; margin-top: 1rem; }
+.footer-col h4 { font-size: .65rem; font-weight: 800; text-transform: uppercase; letter-spacing: .18em; color: var(--dark); margin-bottom: 1.25rem; }
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: .75rem; }
+.footer-col ul li a { color: var(--muted); text-decoration: none; font-size: .9rem; font-weight: 500; transition: color .2s; }
+.footer-col ul li a:hover { color: var(--g); }
+.social-links { display: flex; gap: .75rem; }
+.social-link {
+  width: 44px; height: 44px; background: white; border: 1px solid var(--border);
+  border-radius: 12px; display: flex; align-items: center; justify-content: center;
+  color: var(--muted); text-decoration: none; font-size: .9rem; transition: all .2s;
+}
+.social-link:hover { border-color: var(--g); color: var(--g); }
+
+
+.otp-box{
+  margin-top:1rem;
+  background:#ecfdf5;
+  border:1px solid #bbf7d0;
+  color:#166534;
+  padding:.9rem 1rem;
+  border-radius:14px;
+  font-family:'Syne',sans-serif;
+  font-weight:800;
+  letter-spacing:.2em;
+  text-align:center;
+  font-size:1.1rem;
+}
+
+/* OTP input */
+.otp-input { text-align: center; letter-spacing: .6em; font-size: 1.5rem; font-weight: 800; }
+
+/* animations */
+@keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:.4; } }
+@keyframes fadeIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+.fade-in { animation: fadeIn .35s ease forwards; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="nav-inner">
+    <div class="logo" onclick="goTo('landing')">
+      <div class="logo-icon"><i class="fas fa-screwdriver-wrench"></i></div>
+      <div class="logo-text">
+        <span>SkillHire</span>
+        <span>Secure Marketplace</span>
+      </div>
+    </div>
+    <div class="nav-actions" id="nav-actions">
+      <a class="link-sm" onclick="goTo('login')" style="cursor:pointer">Sign In</a>
+      <button class="btn btn-primary" onclick="goTo('register-user')">Get Help</button>
+    </div>
+  </div>
+</nav>
+
+<!-- TOAST -->
+<div class="toast" id="toast"><i class="fas fa-bolt" style="color:var(--g2)"></i> <span id="toast-text"></span></div>
+
+<!-- MAIN -->
+<main>
+
+<!-- ===== LANDING PAGE ===== -->
+<div class="page active" id="page-landing">
+  <div class="hero">
+    <div class="hero-badge"><i class="fas fa-shield-halved"></i> 100% Identity Verified Professionals</div>
+    <h1>Maintenance<br><span>Simplified.</span></h1>
+    <p>Verified plumbers, electricians, and contractors at your fingertips. Secured by Aadhar.</p>
+    <div class="hero-ctas">
+      <button class="btn-hero-primary" onclick="goTo('register-user')">Find My Expert <i class="fas fa-arrow-right"></i></button>
+      <button class="btn-hero-secondary" onclick="goTo('register-worker')">Join as Partner</button>
+    </div>
+  </div>
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon"><i class="fas fa-id-card"></i></div>
+      <h3>Aadhar Verified</h3>
+      <p>Secure ID validation for every service professional on our network.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon"><i class="fas fa-user-shield"></i></div>
+      <h3>Trusted Workers</h3>
+      <p>Every worker profile is verified with identity and contact details for safer bookings.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon"><i class="fas fa-handshake"></i></div>
+      <h3>Secure Booking</h3>
+      <p>Direct connections with transparent status updates for your home projects.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== LOGIN PAGE ===== -->
+<div class="page" id="page-login">
+  <div class="form-page" style="padding-top:2rem">
+    <div class="form-card">
+      <div class="form-header">
+        <h2>Auth.</h2>
+        <p>Portal Login</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:1.25rem">
+        <div class="form-group">
+          <label>User Identifier</label>
+          <input type="text" id="login-user" placeholder="Username" autocomplete="username">
+        </div>
+        <div class="form-group">
+          <label>Secret Code</label>
+          <input type="password" id="login-pass" placeholder="••••••••" autocomplete="current-password">
+        </div>
+        <div class="error-msg" id="login-error" style="display:none"></div>
+        <button class="btn-submit" onclick="handleLogin()">Initialize Session</button>
+        <p class="text-center" style="margin-top:.5rem">
+          <a class="link-sm" onclick="goTo('forgot-password')" style="cursor:pointer">Lost Access? Reset Password</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== FORGOT PASSWORD ===== -->
+<div class="page" id="page-forgot-password">
+  <div class="form-page" style="padding-top:2rem">
+    <div class="form-card">
+      <div class="form-header">
+        <h2>Identity Recovery</h2>
+        <p>Security Protocol</p>
+      </div>
+      <!-- Step 1: Phone -->
+      <div id="fp-step-phone" style="display:flex;flex-direction:column;gap:1.25rem">
+        <div class="form-group">
+          <label>Registered Phone</label>
+          <input type="tel" id="fp-phone" placeholder="e.g. 9876543210" maxlength="10">
+        </div>
+        <div class="error-msg" id="fp-error-phone" style="display:none"></div>
+        <button class="btn-submit" onclick="fpSendOtp()">Request OTP</button>
+      </div>
+      <!-- Step 2: OTP -->
+      <div id="fp-step-otp" style="display:none;flex-direction:column;gap:1.25rem">
+        <div class="form-group">
+          <label>Verification Code</label>
+          <input type="text" class="otp-input" id="fp-otp" placeholder="0000" maxlength="4">
+        </div>
+        <div class="error-msg" id="fp-error-otp" style="display:none"></div>
+        <button class="btn-submit" onclick="fpVerifyOtp()">Verify Code</button>
+      </div>
+      <!-- Step 3: Reset -->
+      <div id="fp-step-reset" style="display:none;flex-direction:column;gap:1.25rem">
+        <div class="form-group">
+          <label>New Secret Code</label>
+          <input type="password" id="fp-newpass" placeholder="••••••••">
+        </div>
+        <div class="error-msg" id="fp-error-reset" style="display:none"></div>
+        <button class="btn-submit" onclick="fpReset()">Update Identity</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== REGISTER USER ===== -->
+<div class="page" id="page-register-user">
+  <div class="form-page form-wide" style="padding-top:2rem;margin:2rem auto">
+    <div class="form-card">
+      <div class="form-header">
+        <h2>Registration.</h2>
+        <p>Secure User Enrollment</p>
+      </div>
+      <div class="form-grid">
+        <div style="display:flex;flex-direction:column;gap:1.25rem">
+          <p style="font-family:'Syne',sans-serif;font-weight:800;font-size:.75rem;text-transform:uppercase;letter-spacing:.12em;border-bottom:1px solid var(--border);padding-bottom:.75rem">Basic Credentials</p>
+          <div class="form-group">
+            <label>Username</label>
+            <div class="username-wrap">
+              <input type="text" id="ru-username" placeholder="your_username" oninput="checkUsername('ru')">
+              <span class="username-status" id="ru-username-status"></span>
+            </div>
+            <div class="suggestions" id="ru-suggestions"></div>
+          </div>
+          <div class="form-group">
+            <label>Password</label>
+            <input type="password" id="ru-password" placeholder="••••••••">
+          </div>
+          <div class="form-group">
+            <label>Legal Full Name</label>
+            <input type="text" id="ru-name" placeholder="Your full name">
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:1.25rem">
+          <p style="font-family:'Syne',sans-serif;font-weight:800;font-size:.75rem;text-transform:uppercase;letter-spacing:.12em;border-bottom:1px solid var(--border);padding-bottom:.75rem">Identity &amp; Contact</p>
+          <div class="form-group">
+            <label>Mobile Number</label>
+            <input type="tel" id="ru-phone" placeholder="10 digit number" maxlength="10" pattern="\\d{10}" oninput="this.value=this.value.replace(/[^0-9]/g, '')">
+          </div>
+          <div class="form-group">
+            <label>Aadhar ID (12 Digits)</label>
+            <div class="aadhar-row">
+              <input type="text" id="ru-aadhar" placeholder="123456789012" maxlength="12" pattern="\\d{12}" oninput="this.value=this.value.replace(/[^0-9]/g, '')">
+              <button class="btn btn-dark" id="ru-aadhar-btn" onclick="verifyAadhar('ru')" style="border-radius:12px;padding:.5rem 1rem;font-size:.8rem;white-space:nowrap">Verify</button>
+            </div>
+            <div id="ru-aadhar-status"></div>
+          </div>
+          <div class="form-group">
+            <label>Residential Address</label>
+            <textarea id="ru-address" placeholder="Your full address" rows="2"></textarea>
+          </div>
+        </div>
+        <div class="full" id="ru-error-wrap" style="display:none">
+          <div class="error-msg" id="ru-error"></div>
+        </div>
+        <div class="full">
+          <button class="btn-submit" id="ru-submit" onclick="handleRegisterUser()" disabled>Finalize Enrollment</button>
+        </div>
+        <div class="full text-center">
+          <a class="link-sm" onclick="goTo('login')" style="cursor:pointer">Already have an account? Sign In</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== REGISTER WORKER ===== -->
+<div class="page" id="page-register-worker">
+  <div class="form-page form-wide" style="padding-top:2rem;margin:2rem auto">
+    <div class="form-card">
+      <div class="form-header">
+        <h2>Registration.</h2>
+        <p>Secure Worker Enrollment</p>
+      </div>
+      <div class="form-grid">
+        <div style="display:flex;flex-direction:column;gap:1.25rem">
+          <p style="font-family:'Syne',sans-serif;font-weight:800;font-size:.75rem;text-transform:uppercase;letter-spacing:.12em;border-bottom:1px solid var(--border);padding-bottom:.75rem">Basic Credentials</p>
+          <div class="form-group">
+            <label>Username</label>
+            <div class="username-wrap">
+              <input type="text" id="rw-username" placeholder="your_username" oninput="checkUsername('rw')">
+              <span class="username-status" id="rw-username-status"></span>
+            </div>
+            <div class="suggestions" id="rw-suggestions"></div>
+          </div>
+          <div class="form-group">
+            <label>Password</label>
+            <input type="password" id="rw-password" placeholder="••••••••">
+          </div>
+          <div class="form-group">
+            <label>Legal Full Name</label>
+            <input type="text" id="rw-name" placeholder="Your full name">
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:1.25rem">
+          <p style="font-family:'Syne',sans-serif;font-weight:800;font-size:.75rem;text-transform:uppercase;letter-spacing:.12em;border-bottom:1px solid var(--border);padding-bottom:.75rem">Identity &amp; Contact</p>
+          <div class="form-group">
+            <label>Mobile Number</label>
+            <input type="tel" id="rw-phone" placeholder="10 digit number" maxlength="10" pattern="\\d{10}" oninput="this.value=this.value.replace(/[^0-9]/g, '')">
+          </div>
+          <div class="form-group">
+            <label>Aadhar ID (12 Digits)</label>
+            <div class="aadhar-row">
+              <input type="text" id="rw-aadhar" placeholder="123456789012" maxlength="12" pattern="\\d{12}" oninput="this.value=this.value.replace(/[^0-9]/g, '')">
+              <button class="btn btn-dark" id="rw-aadhar-btn" onclick="verifyAadhar('rw')" style="border-radius:12px;padding:.5rem 1rem;font-size:.8rem;white-space:nowrap">Verify</button>
+            </div>
+            <div id="rw-aadhar-status"></div>
+          </div>
+          <div class="form-group">
+            <label>Residential Address</label>
+            <textarea id="rw-address" placeholder="Your full address" rows="2"></textarea>
+          </div>
+        </div>
+        <div class="full" style="display:flex;flex-direction:column;gap:1rem">
+          <p style="font-family:'Syne',sans-serif;font-weight:800;font-size:.75rem;text-transform:uppercase;letter-spacing:.12em">Skill Matrix</p>
+          <div class="skill-tags" id="rw-skills-container"></div>
+        </div>
+        <div class="full" id="rw-error-wrap" style="display:none">
+          <div class="error-msg" id="rw-error"></div>
+        </div>
+        <div class="full">
+          <button class="btn-submit" id="rw-submit" onclick="handleRegisterWorker()" disabled>Finalize Enrollment</button>
+        </div>
+        <div class="full text-center">
+          <a class="link-sm" onclick="goTo('login')" style="cursor:pointer">Already have an account? Sign In</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SERVICE MENU ===== -->
+<div class="page" id="page-service">
+  <div class="service-inner">
+    <!-- Filter bar -->
+    <div class="filter-bar">
+      <div class="filter-left">
+        <h3>Marketplace.</h3>
+        <span>Verified Experts Only</span>
+        <div class="filter-skills" id="filter-skills"></div>
+      </div>
+      <div class="filter-right">
+        <i class="fas fa-search"></i>
+        <input type="text" placeholder="Search professionals..." id="worker-search" oninput="renderWorkers()">
+      </div>
+    </div>
+
+    <!-- Workers grid -->
+    <div class="workers-grid" id="workers-grid"></div>
+  </div>
+</div>
+
+<!-- ===== WORKER DASHBOARD ===== -->
+<div class="page" id="page-worker">
+  <div class="worker-dash-inner">
+    <div class="dash-card">
+      <div class="dash-header">
+        <div style="display:flex;align-items:center;gap:1.5rem;flex:1">
+          <div class="dash-avatar" id="dash-avatar">A</div>
+          <div>
+            <div class="dash-badge">Aadhar Verified Pro</div>
+            <div class="dash-name" id="dash-name">Worker Name</div>
+            <div class="dash-sub"><i class="fas fa-award" style="color:var(--g2)"></i> Master Partner</div>
+          </div>
+        </div>
+        <button class="avail-btn" id="avail-btn" onclick="toggleAvailability()">ONLINE</button>
+      </div>
+      <div class="dash-tabs">
+        <button class="dash-tab active" id="tab-requests" onclick="switchTab('requests')">
+          Requests <span class="tab-badge" id="pending-badge" style="display:none">0</span>
+        </button>
+        <button class="dash-tab" id="tab-profile" onclick="switchTab('profile')">Profile</button>
+      </div>
+      <div class="dash-body">
+        <div id="dash-requests"></div>
+        <div id="dash-profile" style="display:none">
+          <div class="profile-grid">
+            <div>
+              <p class="section-label">Professional Bio</p>
+              <textarea class="profile-bio" id="profile-bio" placeholder="Write your professional bio..." oninput="saveBio()"></textarea>
+              <p class="section-label" style="margin-top:1.5rem">Service Specializations</p>
+              <div class="skill-tags" id="profile-skills"></div>
+            </div>
+            <div>
+              <div class="identity-panel">
+                <p class="section-label">Identity Log</p>
+                <div class="identity-row">
+                  <p class="identity-key">Status</p>
+                  <p class="identity-val green">SECURE VERIFIED</p>
+                </div>
+                <div class="identity-row">
+                  <p class="identity-key">Registered ID</p>
+                  <p class="identity-val" id="identity-aadhar">XXXX XXXX ????</p>
+                </div>
+                <div class="identity-row">
+                  <p class="identity-key">Phone Line</p>
+                  <p class="identity-val" id="identity-phone">—</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="logo" onclick="goTo('landing')" style="margin-bottom:.75rem">
+        <div class="logo-icon" style="width:36px;height:36px;font-size:.9rem"><i class="fas fa-hammer"></i></div>
+        <span style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.2rem">SkillHire Pro</span>
+      </div>
+      <p>The most trusted platform for high-quality home maintenance and specialized construction services. All professionals are Aadhar-verified for your safety.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Resources</h4>
+      <ul>
+        <li><a onclick="goTo('register-worker')" style="cursor:pointer">Apply as Partner</a></li>
+        <li><a onclick="goTo('register-user')" style="cursor:pointer">Request a Pro</a></li>
+        <li><a href="#">Terms of Trust</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Connect</h4>
+      <div class="social-links">
+        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ========== STATE ==========
+const SKILLS = ['Carpenter','Painter','Plumber','Electrician','Construction','Contractor','Construction Vehicle'];
+
+
+// Remove old demo workers from localStorage permanently
+(function cleanupDemoWorkers(){
+  const demoNames = [
+    'rajan_plumber',
+    'vikram_electric',
+    'arjun_carpenter',
+    'priya_contractor'
+  ];
+
+  const workers = JSON.parse(localStorage.getItem('sh_workers') || '[]');
+  const filtered = workers.filter(w => !demoNames.includes(w.username));
+
+  localStorage.setItem('sh_workers', JSON.stringify(filtered));
+})();
+
+
+let state = {
+  currentUser: null,
+  selectedSkill: null,
+};
+
+
+// ===== Strict Validation Helpers =====
+function isValidPhone(phone){
+  return /^\d{10}$/.test(phone);
+}
+
+function isValidAadhar(aadhar){
+  return /^\d{12}$/.test(aadhar);
+}
+
+// ========== STORAGE ==========
+const storage = {
+  getWorkers() { return JSON.parse(localStorage.getItem('sh_workers') || '[]'); },
+  getUsers()   { return JSON.parse(localStorage.getItem('sh_users')   || '[]'); },
+  getJobs()    { return JSON.parse(localStorage.getItem('sh_jobs')    || '[]'); },
+  saveWorker(w) {
+    const list = this.getWorkers();
+    const idx = list.findIndex(x => x.username === w.username);
+    if (idx >= 0) list[idx] = w; else list.push(w);
+    localStorage.setItem('sh_workers', JSON.stringify(list));
+  },
+  saveUser(u) {
+    const list = this.getUsers();
+    list.push(u);
+    localStorage.setItem('sh_users', JSON.stringify(list));
+  },
+  isUsernameTaken(name) {
+    return [...this.getWorkers(), ...this.getUsers()].some(a => a.username === name);
+  },
+  findAccount(user, pass) {
+    return [...this.getWorkers(), ...this.getUsers()].find(a => a.username === user && a.password === pass) || null;
+  },
+  findByPhone(phone) {
+    return [...this.getWorkers(), ...this.getUsers()].find(a => a.phone === phone) || null;
+  },
+  updatePassword(username, pass) {
+    const workers = this.getWorkers();
+    const users   = this.getUsers();
+    const wi = workers.findIndex(w => w.username === username);
+    if (wi >= 0) { workers[wi].password = pass; localStorage.setItem('sh_workers', JSON.stringify(workers)); }
+    const ui = users.findIndex(u => u.username === username);
+    if (ui >= 0) { users[ui].password = pass; localStorage.setItem('sh_users', JSON.stringify(users)); }
+  },
+  createJob(job) {
+    const list = this.getJobs();
+    list.push(job);
+    localStorage.setItem('sh_jobs', JSON.stringify(list));
+  },
+  updateJob(id, status) {
+    const list = this.getJobs();
+    const idx = list.findIndex(j => j.id === id);
+    if (idx >= 0) { list[idx].status = status; localStorage.setItem('sh_jobs', JSON.stringify(list)); }
+  },
+};
+
+// Demo workers removed for production use
+
+// ========== NAVIGATION ==========
+function goTo(page) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  const el = document.getElementById('page-' + page);
+  if (el) { el.classList.add('active'); window.scrollTo(0,0); }
+  updateNav();
+  if (page === 'service') { renderFilterSkills(); renderWorkers(); }
+  if (page === 'worker')  { renderDashboard(); }
+  if (page === 'register-worker') { renderSkillMatrix(); }
+}
+
+function updateNav() {
+  const u = state.currentUser;
+  const na = document.getElementById('nav-actions');
+  if (u) {
+    na.innerHTML = `
+      <div class="nav-user">
+        <div class="nav-user-info hidden-sm">
+          <div class="uname">${u.name}</div>
+          <span class="urole">${u.role}</span>
+        </div>
+        <button class="btn btn-ghost" onclick="logout()" title="Logout"><i class="fas fa-power-off"></i></button>
+      </div>`;
+  } else {
+    na.innerHTML = `
+      <a class="link-sm" onclick="goTo('login')" style="cursor:pointer">Sign In</a>
+      <button class="btn btn-primary" onclick="goTo('register-user')">Get Help</button>`;
+  }
+}
+
+function logout() {
+  state.currentUser = null;
+  localStorage.removeItem('sh_current_user');
+  updateNav();
+  goTo('landing');
+}
+
+
+// Restore login session
+(function restoreSession(){
+  const saved = localStorage.getItem('sh_current_user');
+  if(saved){
+    try{
+      state.currentUser = JSON.parse(saved);
+      updateNav();
+      goTo(state.currentUser.role === 'worker' ? 'worker' : 'service');
+    }catch(e){}
+  }
+})();
+
+// ========== TOAST ==========
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  document.getElementById('toast-text').textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3500);
+}
+
+
+function generateJobOtp() {
+  return Math.floor(100000 + Math.random() * 900000).toString();
+}
+
+function hireWorker(workerUsername, workerName) {
+  if (!state.currentUser) {
+    showToast('Please login first.');
+    goTo('login');
+    return;
+  }
+
+  const otp = generateJobOtp();
+  const job = {
+    id: 'JOB-' + Date.now(),
+    user: state.currentUser.username,
+    userName: state.currentUser.name,
+    worker: workerUsername,
+    workerName,
+    status: 'Pending',
+    otp,
+    createdAt: new Date().toLocaleString()
+  };
+
+  storage.createJob(job);
+
+  alert(
+    `Worker Assigned Successfully!\n\n` +
+    `Verification OTP: ${otp}\n\n` +
+    `Share this OTP with the worker when they arrive so both parties can verify the booking.`
+  );
+
+  showToast('Worker assigned with secure OTP verification.');
+}
+
+// ========== LOGIN ==========
+function handleLogin() {
+  const user = document.getElementById('login-user').value.trim();
+  const pass = document.getElementById('login-pass').value;
+  const err  = document.getElementById('login-error');
+  const acc  = storage.findAccount(user, pass);
+  if (acc) {
+    state.currentUser = acc;
+    localStorage.setItem('sh_current_user', JSON.stringify(acc));
+    err.style.display = 'none';
+    updateNav();
+    goTo(acc.role === 'worker' ? 'worker' : 'service');
+  } else {
+    err.textContent = 'Access denied. Please check your credentials.';
+    err.style.display = 'block';
+  }
+}
+document.getElementById('login-pass').addEventListener('keydown', e => { if (e.key === 'Enter') handleLogin(); });
+
+// ========== FORGOT PASSWORD ==========
+let fpOtp = '', fpTarget = null;
+
+function fpSendOtp() {
+  const phone = document.getElementById('fp-phone').value.trim();
+  const errEl = document.getElementById('fp-error-phone');
+  const acc = storage.findByPhone(phone);
+  if (!acc) { errEl.textContent = 'No account found with this phone.'; errEl.style.display = 'block'; return; }
+  errEl.style.display = 'none';
+  fpOtp = Math.floor(1000 + Math.random() * 9000).toString();
+  fpTarget = acc;
+  document.getElementById('fp-step-phone').style.display = 'none';
+  document.getElementById('fp-step-otp').style.display = 'flex';
+  alert('MOCK OTP: ' + fpOtp);
+}
+
+function fpVerifyOtp() {
+  const val = document.getElementById('fp-otp').value.trim();
+  const errEl = document.getElementById('fp-error-otp');
+  if (val !== fpOtp) { errEl.textContent = 'Invalid OTP code.'; errEl.style.display = 'block'; return; }
+  errEl.style.display = 'none';
+  document.getElementById('fp-step-otp').style.display = 'none';
+  document.getElementById('fp-step-reset').style.display = 'flex';
+}
+
+function fpReset() {
+  const np = document.getElementById('fp-newpass').value;
+  const errEl = document.getElementById('fp-error-reset');
+  if (np.length < 6) { errEl.textContent = 'Password must be at least 6 characters.'; errEl.style.display = 'block'; return; }
+  storage.updatePassword(fpTarget.username, np);
+  showToast('Password updated successfully!');
+  // reset UI
+  document.getElementById('fp-step-reset').style.display = 'none';
+  document.getElementById('fp-step-phone').style.display = 'flex';
+  document.getElementById('fp-phone').value = '';
+  document.getElementById('fp-otp').value = '';
+  document.getElementById('fp-newpass').value = '';
+  fpOtp = ''; fpTarget = null;
+  goTo('login');
+}
+
+// ========== REGISTRATION ==========
+let usernameTimers = {};
+let aadharVerified = { ru: false, rw: false };
+let rwSkills = [];
+
+function checkUsername(prefix) {
+  const input = document.getElementById(prefix + '-username');
+  const statusEl = document.getElementById(prefix + '-username-status');
+  const suggestEl = document.getElementById(prefix + '-suggestions');
+  const val = input.value.toLowerCase().replace(/[^a-z0-9_]/g,'');
+  input.value = val;
+
+  clearTimeout(usernameTimers[prefix]);
+  statusEl.innerHTML = '';
+  suggestEl.innerHTML = '';
+  updateSubmitBtn(prefix);
+
+  if (val.length < 3) return;
+
+  statusEl.innerHTML = '<i class="fas fa-spinner fa-spin" style="color:#94a3b8"></i>';
+  usernameTimers[prefix] = setTimeout(() => {
+    if (storage.isUsernameTaken(val)) {
+      statusEl.className = 'username-status err';
+      statusEl.innerHTML = '<i class="fas fa-times-circle"></i>';
+      input.style.borderColor = '#dc2626';
+      // Suggest alternatives
+      const base = val.replace(/\d+$/,'');
+      suggestEl.innerHTML = [base+'_pro', base+'01', base+'_official', base+'2024'].map(s =>
+        `<span class="suggestion-tag" onclick="applyUsername('${prefix}','${s}')">${s}</span>`
+      ).join('');
+    } else {
+      statusEl.className = 'username-status ok';
+      statusEl.innerHTML = '<i class="fas fa-check-circle"></i>';
+      input.style.borderColor = 'var(--g)';
+      updateSubmitBtn(prefix);
+    }
+  }, 500);
+}
+
+function applyUsername(prefix, name) {
+  document.getElementById(prefix + '-username').value = name;
+  checkUsername(prefix);
+}
+
+function verifyAadhar(prefix) {
+  const aadharEl = document.getElementById(prefix + '-aadhar');
+  const btn = document.getElementById(prefix + '-aadhar-btn');
+  const statusEl = document.getElementById(prefix + '-aadhar-status');
+  if (aadharEl.value.length !== 12 || !/^\d+$/.test(aadharEl.value)) {
+    statusEl.innerHTML = '<p style="color:#dc2626;font-size:.75rem;font-weight:600;margin-top:.3rem">Aadhar must be exactly 12 digits.</p>';
+    return;
+  }
+  btn.disabled = true;
+  btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+  setTimeout(() => {
+    aadharVerified[prefix] = true;
+    aadharEl.disabled = true;
+    btn.style.display = 'none';
+    statusEl.innerHTML = '<div class="aadhar-verified-badge" style="margin-top:.35rem"><i class="fas fa-check-circle"></i> Verified</div>';
+    updateSubmitBtn(prefix);
+  }, 1500);
+}
+
+function updateSubmitBtn(prefix) {
+  const btn = document.getElementById(prefix + '-submit');
+  const statusEl = document.getElementById(prefix + '-username-status');
+  const isVerified = aadharVerified[prefix];
+  const isOk = statusEl && statusEl.classList.contains('ok');
+  if (btn) btn.disabled = !(isVerified && isOk);
+}
+
+function renderSkillMatrix() {
+  const container = document.getElementById('rw-skills-container');
+  if (!container) return;
+  container.innerHTML = SKILLS.map(s => `
+    <span class="skill-tag ${rwSkills.includes(s)?'selected':''}" onclick="toggleRwSkill('${s}')">${s}</span>
+  `).join('');
+}
+
+function toggleRwSkill(skill) {
+  if (rwSkills.includes(skill)) rwSkills = rwSkills.filter(s=>s!==skill);
+  else rwSkills.push(skill);
+  renderSkillMatrix();
+}
+
+function handleRegisterUser() {
+  const username = document.getElementById('ru-username').value.trim();
+  const password = document.getElementById('ru-password').value;
+  const name     = document.getElementById('ru-name').value.trim();
+  const phone    = document.getElementById('ru-phone').value.trim();
+  const aadhar   = document.getElementById('ru-aadhar').value.trim();
+  const address  = document.getElementById('ru-address').value.trim();
+  const errWrap  = document.getElementById('ru-error-wrap');
+  const errEl    = document.getElementById('ru-error');
+
+  if (!username||!password||!name||!phone||!aadhar||!address) {
+    errEl.textContent = 'All fields are required.'; errWrap.style.display='block'; return;
+  }
+  if (!isValidPhone(phone)) {
+    errEl.textContent='Mobile number must be exactly 10 digits.';
+    errWrap.style.display='block';
+    return;
+  }
+
+  if (!isValidAadhar(aadhar)) {
+    errEl.textContent='Aadhar number must be exactly 12 digits.';
+    errWrap.style.display='block';
+    return;
+  }
+
+  if (!aadharVerified.ru) { errEl.textContent='Aadhar verification is mandatory.'; errWrap.style.display='block'; return; }
+
+  const user = { username, password, name, phone, aadhar, address, role: 'user' };
+  storage.saveUser(user);
+  state.currentUser = user;
+  localStorage.setItem('sh_current_user', JSON.stringify(user));
+  updateNav();
+  aadharVerified.ru = false;
+  errWrap.style.display = 'none';
+  goTo('service');
+}
+
+function handleRegisterWorker() {
+  const username = document.getElementById('rw-username').value.trim();
+  const password = document.getElementById('rw-password').value;
+  const name     = document.getElementById('rw-name').value.trim();
+  const phone    = document.getElementById('rw-phone').value.trim();
+  const aadhar   = document.getElementById('rw-aadhar').value.trim();
+  const address  = document.getElementById('rw-address').value.trim();
+  const errWrap  = document.getElementById('rw-error-wrap');
+  const errEl    = document.getElementById('rw-error');
+
+  if (!username||!password||!name||!phone||!aadhar||!address) {
+    errEl.textContent = 'All fields are required.'; errWrap.style.display='block'; return;
+  }
+  if (!isValidPhone(phone)) {
+    errEl.textContent='Mobile number must be exactly 10 digits.';
+    errWrap.style.display='block';
+    return;
+  }
+
+  if (!isValidAadhar(aadhar)) {
+    errEl.textContent='Aadhar number must be exactly 12 digits.';
+    errWrap.style.display='block';
+    return;
+  }
+
+  if (!aadharVerified.rw) { errEl.textContent='Aadhar verification is mandatory.'; errWrap.style.display='block'; return; }
+
+  const worker = { username, password, name, phone, aadhar, address, role: 'worker', skills: rwSkills, availability: 'Y', rating: 5.0, jobsCompleted: 0, bio: '' };
+  storage.saveWorker(worker);
+  state.currentUser = worker;
+  updateNav();
+  aadharVerified.rw = false;
+  rwSkills = [];
+  errWrap.style.display = 'none';
+  goTo('worker');
+}
+
+// ========== SERVICE MENU ==========
+function renderFilterSkills() {
+  const el = document.getElementById('filter-skills');
+  el.innerHTML = `<button class="filter-skill-btn ${!state.selectedSkill?'active':''}" onclick="setSkill(null)">All</button>` +
+    SKILLS.map(s => `<button class="filter-skill-btn ${state.selectedSkill===s?'active':''}" onclick="setSkill('${s}')">${s}</button>`).join('');
+}
+
+function setSkill(skill) {
+  state.selectedSkill = skill;
+  renderFilterSkills();
+  renderWorkers();
+}
+
+function renderWorkers() {
+  const grid = document.getElementById('workers-grid');
+  const search = (document.getElementById('worker-search')?.value || '').toLowerCase();
+  let workers = storage.getWorkers().filter(w => w.availability === 'Y');
+
+  if (state.selectedSkill) workers = workers.filter(w => w.skills && w.skills.includes(state.selectedSkill));
+  if (search) workers = workers.filter(w =>
+    w.name.toLowerCase().includes(search) ||
+    (w.skills||[]).some(s => s.toLowerCase().includes(search))
+  );
+
+  if (workers.length === 0) {
+    grid.innerHTML = `<div class="no-workers" style="grid-column:1/-1"><i class="fas fa-user-slash"></i><h4>No Experts Found</h4><p>Try a different filter or search term.</p></div>`;
+    return;
+  }
+
+  grid.innerHTML = workers.map(w => `
+    <div class="worker-card">
+      <div class="worker-card-top">
+        <div class="worker-avatar">${w.name.charAt(0)}</div>
+        <div class="worker-rating">
+          <div class="stars"><i class="fas fa-star"></i>${(w.rating||5).toFixed(1)}</div>
+          <div class="verified">Identity Verified</div>
+        </div>
+      </div>
+      <div class="worker-name">${w.name}</div>
+      <div class="worker-addr"><i class="fas fa-map-marker-alt" style="color:var(--g)"></i> ${w.address}</div>
+      <div class="worker-skills">${(w.skills||[]).map(s=>`<span class="worker-skill-badge">${s}</span>`).join('')}</div>
+      <div class="worker-actions">
+        <button class="btn-hire" onclick="bookWorker('${w.username}')">Hire Now</button>
+        <button class="btn-chat" onclick="openChat('${w.username}')"><i class="fas fa-comment-dots"></i></button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function bookWorker(wUsername) {
+  if (!state.currentUser || state.currentUser.role !== 'user') { showToast('Please log in as a user first.'); return; }
+  const worker = storage.getWorkers().find(w => w.username === wUsername);
+  if (!worker) return;
+  const query = document.getElementById('ai-query')?.value || 'Direct request from client.';
+  const job = {
+    id: Math.random().toString(36).substr(2,9),
+    userId: state.currentUser.username,
+    workerId: wUsername,
+    skill: state.selectedSkill || (worker.skills[0]||'General'),
+    description: query || 'Direct request from client.',
+    status: 'Pending',
+    timestamp: Date.now(),
+  };
+  storage.createJob(job);
+  showToast(`Booking initiated with ${worker.name}!`);
+  openChat(wUsername);
+}
+
+// ========== AI CONSULT ==========
+async function handleAiConsult() {
+  const query = document.getElementById('ai-query').value.trim();
+  if (!query) return;
+  const btn = document.getElementById('ai-btn');
+  const emptyEl = document.getElementById('ai-empty');
+  const resultEl = document.getElementById('ai-result');
+  const resultText = document.getElementById('ai-result-text');
+
+  btn.disabled = true;
+  btn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> Thinking...';
+  emptyEl.style.display = 'none';
+  resultEl.style.display = 'none';
+
+  try {
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        system: 'You are a home maintenance expert. When a user describes a problem, give them brief, practical advice (2-3 sentences) and recommend the most relevant skill type from: Carpenter, Painter, Plumber, Electrician, Construction, Contractor, Construction Vehicle. Be concise and helpful.',
+        messages: [{ role: 'user', content: query }]
+      })
+    });
+    const data = await response.json();
+    const text = data.content?.find(b => b.type === 'text')?.text || '';
+    resultText.textContent = text;
+    resultEl.style.display = 'block';
+    resultEl.classList.add('fade-in');
+  } catch(e) {
+    resultText.textContent = 'AI advisor unavailable. Based on your description, please browse our verified professionals below.';
+    resultEl.style.display = 'block';
+  }
+
+  btn.disabled = false;
+  btn.innerHTML = '<i class="fas fa-sparkles"></i> Consult AI';
+}
+
+// ========== CHAT ==========
+function openChat(wUsername) {
+  const worker = storage.getWorkers().find(w => w.username === wUsername);
+  if (!worker) return;
+  document.getElementById('chat-avatar').textContent = worker.name.charAt(0);
+  document.getElementById('chat-name').textContent = worker.name;
+  document.getElementById('chat-init-msg').textContent = `Hello! I'm ${worker.name}. How can I help you today?`;
+  // Reset messages
+  const body = document.getElementById('chat-body');
+  body.innerHTML = `
+    <div class="chat-bubble received">Hello! I'm ${worker.name}. How can I help you today?</div>
+    <div class="chat-bubble sent">Hi ${worker.name}, I need some help with my project.</div>
+  `;
+  document.getElementById('chat-modal').classList.add('open');
+}
+
+function closeChat() {
+  document.getElementById('chat-modal').classList.remove('open');
+}
+
+function sendChat() {
+  const input = document.getElementById('chat-input');
+  const msg = input.value.trim();
+  if (!msg) return;
+  const body = document.getElementById('chat-body');
+  body.innerHTML += `<div class="chat-bubble sent">${msg}</div>`;
+  input.value = '';
+  body.scrollTop = body.scrollHeight;
+  setTimeout(() => {
+    body.innerHTML += `<div class="chat-bubble received">Thanks for your message! I'll get back to you shortly.</div>`;
+    body.scrollTop = body.scrollHeight;
+  }, 800);
+}
+
+// ========== WORKER DASHBOARD ==========
+function renderDashboard() {
+  const worker = state.currentUser;
+  if (!worker || worker.role !== 'worker') return;
+
+  document.getElementById('dash-avatar').textContent = worker.name.charAt(0);
+  document.getElementById('dash-name').textContent = worker.name;
+  document.getElementById('identity-aadhar').textContent = 'XXXX XXXX ' + worker.aadhar.slice(-4);
+  document.getElementById('identity-phone').textContent = worker.phone;
+  document.getElementById('profile-bio').value = worker.bio || '';
+  document.getElementById('profile-skills').innerHTML = (worker.skills||[]).map(s =>
+    `<span class="skill-tag selected" style="cursor:default">${s}</span>`
+  ).join('');
+
+  const avBtn = document.getElementById('avail-btn');
+  avBtn.textContent = worker.availability === 'Y' ? 'ONLINE' : 'OFFLINE';
+  avBtn.className = 'avail-btn ' + (worker.availability === 'Y' ? 'online' : 'offline');
+
+  renderJobRequests();
+}
+
+function switchTab(tab) {
+  document.getElementById('tab-requests').classList.toggle('active', tab === 'requests');
+  document.getElementById('tab-profile').classList.toggle('active', tab === 'profile');
+  document.getElementById('dash-requests').style.display = tab === 'requests' ? 'block' : 'none';
+  document.getElementById('dash-profile').style.display = tab === 'profile' ? 'block' : 'none';
+}
+
+function renderJobRequests() {
+  const worker = state.currentUser;
+  const allJobs = storage.getJobs().filter(j => j.workerId === worker.username);
+  const pending = allJobs.filter(j => j.status === 'Pending');
+  const badge = document.getElementById('pending-badge');
+  if (pending.length > 0) { badge.style.display = 'inline'; badge.textContent = pending.length; }
+  else { badge.style.display = 'none'; }
+
+  const container = document.getElementById('dash-requests');
+  if (allJobs.length === 0) {
+    container.innerHTML = `<div class="empty-jobs"><i class="fas fa-hourglass"></i><h4>Awaiting Requests</h4><p>The system will alert you as soon as a new project matches your expertise.</p></div>`;
+    return;
+  }
+  container.innerHTML = allJobs.sort((a,b) => b.timestamp - a.timestamp).map(job => `
+    <div class="job-card">
+      <div class="job-info">
+        <div class="job-meta">
+          <span class="job-skill-badge">${job.skill} Project</span>
+          <span class="status-badge status-${job.status}">${job.status}</span>
+        </div>
+        <div class="job-id">Job Request #${job.id}</div>
+        <div class="job-desc">"${job.description}"</div>
+        <div class="job-time"><i class="fas fa-calendar-alt"></i> ${new Date(job.timestamp).toLocaleString()}</div>
+      </div>
+      <div class="job-actions">
+        ${job.status === 'Pending' ? `
+          <button class="btn-approve" onclick="updateJob('${job.id}','Accepted')">Approve Job</button>
+          <button class="btn-decline" onclick="updateJob('${job.id}','Cancelled')">Decline</button>
+        ` : ''}
+        ${job.status === 'Accepted' ? `
+          <button class="btn-complete" onclick="updateJob('${job.id}','Completed')">Close Project</button>
+        ` : ''}
+      </div>
+    </div>
+  `).join('');
+}
+
+function updateJob(id, status) {
+  storage.updateJob(id, status);
+  renderJobRequests();
+}
+
+function toggleAvailability() {
+  const worker = state.currentUser;
+  if (!worker || worker.role !== 'worker') return;
+  worker.availability = worker.availability === 'Y' ? 'N' : 'Y';
+  state.currentUser = worker;
+  storage.saveWorker(worker);
+  const avBtn = document.getElementById('avail-btn');
+  avBtn.textContent = worker.availability === 'Y' ? 'ONLINE' : 'OFFLINE';
+  avBtn.className = 'avail-btn ' + (worker.availability === 'Y' ? 'online' : 'offline');
+  showToast('Status updated: ' + (worker.availability === 'Y' ? 'ONLINE' : 'OFFLINE'));
+}
+
+function saveBio() {
+  const worker = state.currentUser;
+  if (!worker || worker.role !== 'worker') return;
+  worker.bio = document.getElementById('profile-bio').value;
+  state.currentUser = worker;
+  storage.saveWorker(worker);
+}
+
+// ========== ENTER KEY SUPPORT ==========
+document.addEventListener('keydown', e => {
+  if (e.key === 'Enter') {
+    const active = document.querySelector('.page.active');
+    if (!active) return;
+    const id = active.id;
+    if (id === 'page-login') handleLogin();
+  }
+});
+
+// Init
+updateNav();
+</script>
+</body>
+</html>
